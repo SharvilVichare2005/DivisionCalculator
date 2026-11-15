@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -12,7 +11,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat '"C:\\Users\\Sharvil\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m venv .venv'
+                bat '"C:\\Program Files\\Python313\\python.exe" -m venv .venv'
                 bat '.venv\\Scripts\\python.exe -m pip install --upgrade pip'
                 bat '.venv\\Scripts\\python.exe -m pip install -r requirements.txt'
             }
@@ -33,11 +32,8 @@ pipeline {
 
     post {
         always {
-            junit allowEmptyResults: true,
-                  testResults: 'test-results.xml'
-
-            archiveArtifacts artifacts: 'evidently_report.html',
-                             allowEmptyArchive: true
+            junit allowEmptyResults: true, testResults: 'test-results.xml'
+            archiveArtifacts artifacts: 'evidently_report.html', allowEmptyArchive: true
         }
     }
 }
