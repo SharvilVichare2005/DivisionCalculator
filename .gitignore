@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+division_inputs.csv
+evidently_report.html
+test-results.xml
